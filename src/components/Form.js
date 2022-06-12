@@ -1,7 +1,6 @@
 import React, {useState} from "react";
-const Form = ({calculateMortgage, setBorrowingAmount, calculateLoanTotal, payBack}) => {
+const Form = ({calculateMortgage, setBorrowingAmount, calculateTermSplit, setTermSplit }) => {
 
-   
 
         const[incomeOne, setIncomeOne] = useState("");
         const[incomeTwo, setIncomeTwo] = useState("");
@@ -25,24 +24,9 @@ const Form = ({calculateMortgage, setBorrowingAmount, calculateLoanTotal, payBac
             setBorrowingAmount(mortgageResult)
 
             const value3 = parseInt(term)
-            const loanTotalResult = calculateLoanTotal()
-            setPayBack(loanTotalResult)
+            const loanSplitResult = calculateTermSplit(value1,value2,value3)
+            setTermSplit(loanSplitResult)
            
-
-
-
-            // const incomeOneToSubmit = incomeOne.trim();
-            // const incomeTwoToSubmit = incomeTwoToSubmit.trim()
-            // if (!incomeOneToSubmit || !incomeTwoToSubmit){
-            //     return
-            // }
-            // onIncomeSubmit({
-            //     incomeOne : incomeOneToSubmit,
-            //     incomeTwo : incomeTwoToSubmit
-            // })
-
-            // setIncomeOne("");
-            // setIncomeTwo("");
         }
 
     return (
@@ -54,17 +38,18 @@ const Form = ({calculateMortgage, setBorrowingAmount, calculateLoanTotal, payBac
             value={incomeOne}
             onChange={handleIncomeOneChange}
             />
-
+            <p>
             <input
             type="number"
             placeholder="Your partner's annual income"
             value={incomeTwo}
             onChange={handleIncomeTwoChange}
-
             />
+            </p>
+            
             <input 
             type = "number"
-            placeholder="loan term"
+            placeholder="Term"
             value={term}
             onChange={handleTermChange}
             />
